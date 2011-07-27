@@ -11,9 +11,9 @@ public class AudioPlayer extends List implements CommandListener, PlayerListener
 
     tuneMahViolinMidlet midlet;
     private Display display;
-    private Command play, stop, exit;
+    private Command play, exit;
     private Player player;
-    private boolean playing = false;
+    private int playing = -1; // -1 meaning playing no note, 0 first note, etc.
     private String[] notes;
     private String[] noteFiles = {
         "violinGString.mp3", "violinDString.mp3", "violinAString.mp3", "violinEString.mp3"
@@ -34,20 +34,25 @@ public class AudioPlayer extends List implements CommandListener, PlayerListener
     public void commandAction(Command c, Displayable d) {
         if (c == play || c == List.SELECT_COMMAND) {
             try {
-                if (!playing) {
+                if (playing == -1) {
                     playAudio(this.getSelectedIndex());
-                    playing = true;
+                    playing = this.getSelectedIndex();
                 } else {
+                    player.stop();
                     player.close();
-                    playing = false;
+                    if (this.getSelectedIndex() != playing) { // if note is different than currently playing one, play the new one
+                        playAudio(this.getSelectedIndex());
+                        playing = this.getSelectedIndex();
+                    } else {
+                        playing = -1;
+                    }
                 }
             } catch (Exception e) {
             }
-        } else if (c == stop) {
-            player.close();
         } else if (c == exit) {
             if (player != null) {
                 player.close();
+                playing = -1;
             }
             midlet.destroyApp(false);
         }
