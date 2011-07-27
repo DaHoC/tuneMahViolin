@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 MIDlet-1: tuneMahViolinMidlet, ,tuneMahViolin.tuneMahViolinMidlet
 MIDlet-Jar-Size: 2109338
-=======
-MIDlet-1: tuneMahViolinMidlet,/media/gawelogoIcon.png,tuneMahViolin.tuneMahViolinMidlet
-MIDlet-Jar-Size: 2109344
->>>>>>> e38234a78e78b72fceca48c2111969aca81c61fc
 MIDlet-Jar-URL: TuneMahViolin.jar
 MIDlet-Name: TuneMahViolin
 MIDlet-Vendor: gawe-design
